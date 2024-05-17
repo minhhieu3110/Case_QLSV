@@ -16,4 +16,7 @@ class Class{
     delete(index){
         this.listStudents.splice(index, 1);
     }
+    searchByName(name){
+        return this.listStudents.filter(value => value.name.toUpperCase().includes(name.toUpperCase()))
+    }
 }

@@ -3,7 +3,7 @@ let listStu = myClass.listStudents
 
 function showList(){
     document.getElementById('display').innerHTML = `
-    <h3>Danh Sách Học Sinh</h3><br>
+    <h3>Danh Sách Sinh Viên</h3><br>
     <table border="1px">
         <tr>
             <th>STT</th>
@@ -109,6 +109,46 @@ function deleteStu(index){
         showList()
     }else {
         alert("Thao tác xóa đã hủy")
+    }
+}
+function findStu(){
+    let nameSearch = document.getElementById('searchName').value
+    let foundName = myClass.searchByName(nameSearch)
+    if( foundName.length > 0){
+        let str = ``
+        document.getElementById('display').innerHTML = `
+        <h3>Kết Quả Tìn Kiếm</h3><br>
+    <table border="1px">
+        <tr>
+            <th>STT</th>
+            <th>Tên</th>
+            <th>Toán</th>
+            <th>Vật Lý</th>
+            <th>Anh Văn</th>
+            <th>Điểm Trung Bình</th>
+            <th>Hạnh Kiểm</th>
+            <th>Học Lực</th>
+        </tr>
+        <tbody id="findStu" style="text-align: center">
+            
+        </tbody>
+    </table>`
+        for (let i = 0; i < foundName.length; i++) {
+            str +=`
+            <tr>
+                <td>${foundName[i].id}</td>
+                <td>${foundName[i].name}</td>
+                <td>${foundName[i].mathScore}</td>
+                <td>${foundName[i].physicalScore}</td>
+                <td>${foundName[i].englishScore}</td>
+                <td>${foundName[i].averageScore}</td>
+                <td>${foundName[i].conductClassification}</td>
+                <td>${foundName[i].ranked}</td>
+            </tr>`
+        }
+        document.getElementById('findStu').innerHTML = str;
+    }else {
+        alert("Không tìm thấy sinh viên có tên "+nameSearch)
     }
 }
 showList()
